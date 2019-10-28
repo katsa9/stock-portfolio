@@ -1,17 +1,17 @@
 'use strict';
-var dataProvider = require('../data/addCredit.js');
+var dataProvider = require('../data/buy.js');
 /**
- * Operations on /addCredit
+ * Operations on /buy
  */
 module.exports = {
     /**
-     * summary: Specifies the amount of money to add to the user&#39;s credit balance
+     * summary: Specifies a stock ticker and a number of shares to purchase
      * description: 
-     * parameters: amount
+     * parameters: ticker, amount
      * produces: application/json, text/json
      * responses: 200
      */
-    put: function portfolio_add_credit(req, res, next) {
+    put: function portfolio-buy(req, res, next) {
         /**
          * Get the data for response 200
          * For response `default` status 200 is used.

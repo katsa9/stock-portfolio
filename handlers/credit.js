@@ -1,23 +1,23 @@
 'use strict';
-var dataProvider = require('../data/addCredit.js');
+var dataProvider = require('../data/credit.js');
 /**
- * Operations on /addCredit
+ * Operations on /credit
  */
 module.exports = {
     /**
-     * summary: Specifies the amount of money to add to the user&#39;s credit balance
+     * summary: Returns the amount of credit the user has.
      * description: 
-     * parameters: amount
+     * parameters: 
      * produces: application/json, text/json
      * responses: 200
      */
-    put: function portfolio_add_credit(req, res, next) {
+    get: function portfolio_credit(req, res, next) {
         /**
          * Get the data for response 200
          * For response `default` status 200 is used.
          */
         var status = 200;
-        var provider = dataProvider['put']['200'];
+        var provider = dataProvider['get']['200'];
         provider(req, res, function (err, data) {
             if (err) {
                 next(err);
