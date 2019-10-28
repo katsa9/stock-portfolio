@@ -31,7 +31,7 @@ Test('/buy', function (t) {
          * produces: application/json, text/json
          * responses: 200
          */
-        t.test('test portfolio-buy put operation', function (t) {
+        t.test('test portfolio_buy put operation', function (t) {
             Mockgen().requests({
                 path: '/buy',
                 operation: 'put'

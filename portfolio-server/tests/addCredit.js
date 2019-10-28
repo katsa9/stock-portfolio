@@ -31,7 +31,7 @@ Test('/addCredit', function (t) {
          * produces: application/json, text/json
          * responses: 200
          */
-        t.test('test portfolio-add-credit put operation', function (t) {
+        t.test('test portfolio_add_credit put operation', function (t) {
             Mockgen().requests({
                 path: '/addCredit',
                 operation: 'put'

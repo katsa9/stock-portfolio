@@ -1,6 +1,6 @@
 'use strict';
 
-var port = process.env.PORT || 8000; // Better flexibility than hardcoding the port
+var port = 8002; // Better flexibility than hardcoding the port
 
 var Http = require('http');
 var Express = require('express');
@@ -32,8 +32,8 @@ App.use(BodyParser.urlencoded({
 }));
 
 App.use(Swaggerize({
-    api: Path.resolve('portfolio-server/config/swagger.json'),
-    handlers: Path.resolve('portfolio-server/handlers'),
+    api: Path.resolve('config/swagger.json'),
+    handlers: Path.resolve('handlers'),
     docspath: '/swagger'   //  Hooks up the testing UI
 }));
 
@@ -42,4 +42,5 @@ App.use('/', SwaggerUi({    // Serves the testing UI from our base URL
 }));
 
 Server.listen(port, function () {  // Starts server with our modfied port settings
+    console.log('App running on %s:%d', this.address().address, this.address().port);
  });

@@ -47,7 +47,7 @@
                     "Portfolio"
                 ],
                 "summary": "Specifies a stock ticker and a number of shares to purchase",
-                "operationId": "portfolio-buy",
+                "operationId": "portfolio_buy",
                 "produces": [
                     "application/json",
                     "text/json"
@@ -82,7 +82,7 @@
                     "Portfolio"
                 ],
                 "summary": "Specifies a stock ticker and a number of shares to sell",
-                "operationId": "portfolio-sell",
+                "operationId": "portfolio_sell",
                 "produces": [
                     "application/json",
                     "text/json"
@@ -126,8 +126,8 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Stock"
-                        }
+                              "$ref": "#/definitions/Credit"
+                          }
                     }
                 },
                 "deprecated": false
@@ -139,7 +139,7 @@
                     "Portfolio"
                 ],
                 "summary": "Specifies the amount of money to add to the user's credit balance",
-                "operationId": "portfolio-add-credit",
+                "operationId": "portfolio_add_credit",
                 "produces": [
                     "application/json",
                     "text/json"

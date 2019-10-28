@@ -14,15 +14,21 @@ module.exports = {
      */
     get: {
         200: function (req, res, callback) {
-            /**
-             * Using mock data generator module.
-             * Replace this by actual data for the api.
-             */
-            Mockgen().responses({
-                path: '/portfolio',
-                operation: 'get',
-                response: '200'
-            }, callback);
+                // var portfolio = global.portfolio;
+
+                var portfolio = {
+                    goog: {
+                        ticker: "goog",
+                        shareCount: 3,
+                        totalValue: 0
+                    },
+                    msft: {
+                        ticker: "msft",
+                        shareCount: 4,
+                        totalValue: 0
+                    }
+                }
+                return Object.values(portfolio);
         }
     }
 };

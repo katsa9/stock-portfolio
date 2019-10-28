@@ -126,7 +126,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Stock" 
+                "$ref": "#/definitions/Credit"
             }
           }
         },

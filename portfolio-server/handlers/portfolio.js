@@ -17,13 +17,15 @@ module.exports = {
          * For response `default` status 200 is used.
          */
         var status = 200;
+        var message = 'it sent portfolio';
         var provider = dataProvider['get']['200'];
-        provider(req, res, function (err, data) {
+        var data = provider(req, res, function (err, data) {
             if (err) {
                 next(err);
                 return;
             }
-            res.status(status).send(data && data.responses);
         });
+        res.json(data);
+        res.status(status).send(message);
     }
 };
