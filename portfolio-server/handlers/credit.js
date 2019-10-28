@@ -17,7 +17,8 @@ module.exports = {
          * For response `default` status 200 is used.
          */
         var status = 200;
-        var message = 'it sent';
+        var message = '';
+
         var provider = dataProvider['get']['200'];
         var data = provider(req, res, function (err, data) {
             if (err) {

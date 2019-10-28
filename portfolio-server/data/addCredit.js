@@ -14,15 +14,16 @@ module.exports = {
      */
     put: {
         200: function (req, res, callback) {
-            /**
-             * Using mock data generator module.
-             * Replace this by actual data for the api.
-             */
-            Mockgen().responses({
-                path: '/addCredit',
-                operation: 'put',
-                response: '200'
-            }, callback);
+            let addAmount = req.query.amount;
+            let credit = {};
+            let currentCredit = global.credit;
+            if(currentCredit === undefined) {
+                credit.value = addAmount; 
+            } else {
+                credit.value = currentCredit.value + addAmount;  
+            }
+            global.credit = credit;
+            return credit;
         }
     }
 };

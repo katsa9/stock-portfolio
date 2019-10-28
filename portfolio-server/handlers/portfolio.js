@@ -1,5 +1,6 @@
 'use strict';
 var dataProvider = require('../data/portfolio.js');
+const fetch = require('node-fetch');
 /**
  * Operations on /portfolio
  */
@@ -11,7 +12,7 @@ module.exports = {
      * produces: application/json, text/json
      * responses: 200
      */
-    get: function portfolio_get(req, res, next) {
+    get: function portfolio_get (req, res, next) {
         /**
          * Get the data for response 200
          * For response `default` status 200 is used.
@@ -25,7 +26,12 @@ module.exports = {
                 return;
             }
         });
-        res.json(data);
-        res.status(status).send(message);
+        // res.json(data);
+        fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=5IO11U7YDDNXHR1J')
+            .then(res => res.json())
+            .then(json => {
+                res.json(json);
+                return res.status(status).send(message);
+            });
     }
 };

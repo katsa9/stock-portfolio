@@ -14,10 +14,11 @@ module.exports = {
      */
     get: {
         200: function (req, res, callback) {
-            var response = {
-                value: 33
+            let currentCredit = global.credit;
+            let emptyCredit = {
+                value: 0
             };
-            return response;
+            return currentCredit ? currentCredit : emptyCredit;
         }
     }
 };
