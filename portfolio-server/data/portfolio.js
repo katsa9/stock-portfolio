@@ -1,5 +1,4 @@
 'use strict';
-var Mockgen = require('./mockgen.js');
 /**
  * Operations on /portfolio
  */
@@ -23,25 +22,14 @@ module.exports = {
                 }
             } else {
                 return assets;
+
+/****START OF CODE TO UPDATE VALUES OF ASSETS BASED ON CURRENT VALUES */
+
                 // let updated = Object.values(assets).map(item => module.exports.updateShareValue(item, module.exports.onSharePriceReceived))
                 // global.portfolio = updated;
                 // return updated;
             }
-            // var portfolio = {
-            //     goog: {
-            //         ticker: "goog",
-            //         shareCount: 3,
-            //         totalValue: 0
-            //     },
-            //     msft: {
-            //         ticker: "msft",
-            //         shareCount: 4,
-            //         totalValue: 0
-            //     }
-            // }
-            // return Object.values(portfolio);
         }
-
     }
     // ,
     // onSharePriceReceived: function(item, shareCost) {

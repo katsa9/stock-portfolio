@@ -1,5 +1,4 @@
 'use strict';
-var Mockgen = require('./mockgen.js');
 /**
  * Operations on /addCredit
  */

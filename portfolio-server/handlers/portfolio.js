@@ -12,14 +12,10 @@ module.exports = {
      * responses: 200
      */
     get: function portfolio_get (req, res, next) {
-        /**
-         * Get the data for response 200
-         * For response `default` status 200 is used.
-         */
-        var status = 200;
-        var message;
-        var provider = dataProvider['get']['200'];
-        var data = provider(req, res, function (err, data) {
+        let status = 200;
+        let message;
+        let provider = dataProvider['get']['200'];
+        let data = provider(req, res, function (err, data) {
             if (err) {
                 next(err);
                 return;

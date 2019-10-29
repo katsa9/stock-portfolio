@@ -1,7 +1,6 @@
 'use strict';
 var dataProvider = require('../data/buy.js');
 var utils = require('../handlers/utils.js');
-const fetch = require('node-fetch');
 /**
  * Operations on /buy
  */
@@ -15,9 +14,6 @@ module.exports = {
      */
     put: function portfolio_buy (req, res, next) {
         let status = 200, message;
-        global.credit = {
-            value: 3434555
-        }
         let credit = global.credit;
 
         if(credit === undefined || credit === 0) {
