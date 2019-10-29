@@ -1,6 +1,5 @@
 'use strict';
 var Mockgen = require('./mockgen.js');
-const fetch = require('node-fetch');
 /**
  * Operations on /portfolio
  */
@@ -15,19 +14,7 @@ module.exports = {
      */
     get: {
         200: function (req, res, callback) {
-            // var portfolio = global.portfolio;
-            var assets = {
-                MSFT: {
-                    ticker: "MSFT",
-                    totalValue: 658870,
-                    shareCount: 3
-                },
-                GOOG: {
-                    ticker: "GOOG",
-                    shareCount: 7,
-                    totalValue: 800000
-                }
-            };
+            let assets = global.portfolio;
             if (assets === undefined || assets === null) {
                 return {
                     ticker: "You have no shares",

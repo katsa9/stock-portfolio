@@ -14,15 +14,32 @@ module.exports = {
      */
     put: {
         200: function (req, res, callback) {
-            /**
-             * Using mock data generator module.
-             * Replace this by actual data for the api.
-             */
-            Mockgen().responses({
-                path: '/buy',
-                operation: 'put',
-                response: '200'
-            }, callback);
+            let assets = global.portfolio;
+            let sharesBought = req.query.amount;
+            let tickerValue = req.query.ticker;
+            let pricePaid = res;
+
+            if(assets) {
+                let currentAsset = assets[tickerValue];
+                if(currentAsset) {
+                    let newTotalValue = currentAsset.totalValue + pricePaid;
+                    let newShareCount = currentAsset.shareCount + sharesBought;
+                    module.exports.updatePortfolio(assets, tickerValue,newTotalValue,newShareCount);
+                }
+            } else {
+                module.exports.updatePortfolio(assets, tickerValue,pricePaid,sharesBought);
+            }
+            console.log(global.portfolio);
+        }
+    },
+    updatePortfolio: function(assets, tickerValue, pricePaid, sharesBought) {
+        global.portfolio = {
+            ...assets,
+            [tickerValue]: {
+                ticker: tickerValue,
+                totalValue: pricePaid,
+                shareCount: sharesBought
+            }
         }
     }
 };
