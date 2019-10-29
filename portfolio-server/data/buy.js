@@ -1,5 +1,5 @@
 'use strict';
-var Mockgen = require('./mockgen.js');
+var utils = require('../data/utils.js');
 /**
  * Operations on /buy
  */
@@ -24,21 +24,10 @@ module.exports = {
                 if(currentAsset) {
                     let newTotalValue = currentAsset.totalValue + pricePaid;
                     let newShareCount = currentAsset.shareCount + sharesBought;
-                    module.exports.updatePortfolio(assets, tickerValue,newTotalValue,newShareCount);
+                   utils.updatePortfolio(assets, tickerValue,newTotalValue,newShareCount);
                 }
             } else {
-                module.exports.updatePortfolio(assets, tickerValue,pricePaid,sharesBought);
-            }
-            console.log(global.portfolio);
-        }
-    },
-    updatePortfolio: function(assets, tickerValue, pricePaid, sharesBought) {
-        global.portfolio = {
-            ...assets,
-            [tickerValue]: {
-                ticker: tickerValue,
-                totalValue: pricePaid,
-                shareCount: sharesBought
+                utils.updatePortfolio(assets, tickerValue,pricePaid,sharesBought);
             }
         }
     }

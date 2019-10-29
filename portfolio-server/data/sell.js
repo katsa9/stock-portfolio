@@ -1,5 +1,5 @@
 'use strict';
-var Mockgen = require('./mockgen.js');
+var utils = require('../data/utils.js');
 /**
  * Operations on /sell
  */
@@ -14,15 +14,19 @@ module.exports = {
      */
     put: {
         200: function (req, res, callback) {
-            /**
-             * Using mock data generator module.
-             * Replace this by actual data for the api.
-             */
-            Mockgen().responses({
-                path: '/sell',
-                operation: 'put',
-                response: '200'
-            }, callback);
+            let assets = global.portfolio;
+            let sharesSold = req.query.amount;
+            let tickerValue = req.query.ticker;
+            let priceReceived = res;
+
+            if (assets) {
+                let currentAsset = assets[tickerValue];
+                if (currentAsset && currentAsset.shareCount >= sharesSold) {
+                    let newTotalValue = currentAsset.totalValue - priceReceived;
+                    let newShareCount = currentAsset.shareCount - sharesSold;
+                    utils.updatePortfolio(assets, tickerValue, newTotalValue, newShareCount);
+                }
+            }
         }
     }
 };
