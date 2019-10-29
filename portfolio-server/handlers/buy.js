@@ -19,14 +19,12 @@ module.exports = {
             value: 3434555
         }
         let credit = global.credit;
-        let toPay = 0;  
 
         if(credit === undefined || credit === 0) {
             status = 400;
             message = "You need to add credit to your account before you can buy shares.";
             res.status(status).send(message);
         } 
-
         utils.getSharePrice(req,res, credit, module.exports.onSharePriceReceived);
     },
     onSharePriceReceived(req, res, totalPrice, credit) {

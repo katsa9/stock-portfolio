@@ -1,5 +1,6 @@
 'use strict';
 var dataProvider = require('../data/sell.js');
+var utils = require('../handlers/utils.js');
 /**
  * Operations on /sell
  */
@@ -11,23 +12,36 @@ module.exports = {
      * produces: application/json, text/json
      * responses: 200
      */
-    put: function portfolio_sell(req, res, next) {
-        /**
-         * Get the data for response 200
-         * For response `default` status 200 is used.
-         */
-        var status = 200, message;
-        var portfolio = global.portfolio;
-        var sharePrice = 0;  //get share price from api
+    put: function portfolio_sell (req, res, next) {
+        let status = 200, message;
+        global.credit = {
+            value: 3434555
+        }
+        let credit = global.credit;
+        let sharesToSell = req.query.amount;
+        let tickerValue = req.query.ticker;
+        let assets = global.portfolio;
 
-        //check if user has shares greater or equal to desired sell amount for specific share
-        var provider = dataProvider['put']['200'];
-        var data = provider(req, res, function (err, data) {
-            if (err) {
-                next(err);
-                return;
+        if (assets) {
+            let currentAsset = assets[tickerValue];
+            if (currentAsset && currentAsset.shareCount >= sharesToSell) {
+                utils.getSharePrice(req, res, credit, module.exports.onSharePriceReceived);
+            } else {
+                status = 400;
+                message = "You need to add credit to your account before you can buy shares.";
+                res.status(status).send(message);
             }
-        });
+        }
+    },
+    onSharePriceReceived (req, res, totalPrice, credit) {
+            let provider = dataProvider['put']['200'];
+            let data = provider(req, totalPrice, function (err, data) {
+                if (err) {
+                    next(err);
+                    return;
+                }
+            });
+            res.json(data);
         res.status(status).send(message);
     }
 };

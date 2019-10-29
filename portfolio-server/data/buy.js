@@ -25,6 +25,8 @@ module.exports = {
                     let newTotalValue = currentAsset.totalValue + pricePaid;
                     let newShareCount = currentAsset.shareCount + sharesBought;
                    utils.updatePortfolio(assets, tickerValue,newTotalValue,newShareCount);
+                }else {
+                    utils.updatePortfolio(assets, tickerValue,pricePaid,sharesBought);
                 }
             } else {
                 utils.updatePortfolio(assets, tickerValue,pricePaid,sharesBought);
